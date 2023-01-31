@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>API Homepage</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}">
+  </head>
+
+  <body>
+  	<h1>Bienvenue</h1>
+    <p>API de recommmendations d'articles, modèle d'utilisation :</p>
+        <pre><code>
+# A curl example
+curl -X POST http://IP_ADDRESS/api \
+    -H 'Content-type: application/json' \
+    -d '{"user_id" : ID_USER}'
+        </code></pre>
+  </body>
+</html>
