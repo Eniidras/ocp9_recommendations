@@ -2,9 +2,11 @@ from joblib import dump, load
 from scipy.sparse import csr_matrix
 from implicit.nearest_neighbours import bm25_weight
 
-dir_path = "path_to_data"
+dir_path = "../static/model/"
 
-clicks = load(dir_path + "clicks.csv")
+path_to_dataset = "../../data/"
+
+clicks = load(path_to_dataset + "clicks.csv")
 
 articles = []
 users = []
@@ -23,4 +25,4 @@ users_clicks = csr_matrix(
 categories_users_clicks = bm25_weight(categories_users_clicks, K1=100, B=0.8)
 user_clicks = categories_users_clicks.T.tocsr()
 
-dump(user_clicks, dir_path+"saves/user_clicks.joblib")
+dump(user_clicks, dir_path+"user_clicks.joblib")
