@@ -11,9 +11,20 @@
     <p>API de recommmendations d'articles, modèle d'utilisation :</p>
         <pre><code>
 # A curl example
-curl -X POST http://IP_ADDRESS/api \
+curl -X POST https://APP_ADDRESS/api \
     -H 'Content-type: application/json' \
     -d '{"user_id" : ID_USER}'
+        </code></pre>
+
+    <p>Possibilité d'ajouter le paramètre <code>filter_liked_items</code> afin de ne recommander que des articles nouveaux. (par défaut <code>false</code>)</p>
+    <p>Ainsi que <code>number_items</code> pour changer le nombre d'articles recommandés. (par défaut 5)</p>
+    <p>Exemple :</p>
+        <pre><code>
+curl -X POST http://APP_ADDRESS/api \
+    -H 'Content-type: application/json' \
+    -d '{"user_id" : ID_USER, \
+        "filter_liked_items" : true, \
+        "number_items" : 10}'
         </code></pre>
   </body>
 </html>
