@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, render_template, request, flash
 import model
 import os
 
@@ -14,6 +14,27 @@ def no_body(message):
         "message" : message
     }
     return jsonify(message), 400
+
+@app.route("/application", methods=["GET"])
+def application():
+    return render_template("application.html")
+
+@app.route("/resultats", methods=["POST"])
+def resultats():
+    user_id = int(request.form["user_id"])
+    filter_liked_items = "filter_liked_items" in request.form
+    if "number_items" in request.form:
+        number_items = int(request.form["number_items"])
+    else:
+        number_items = 5
+
+    recommendations = model.recommend(user_id, number_items, filter_liked_items)
+    recommendations = [int(i) for i in recommendations] 
+
+    for n in recommendations:
+        flash(n, "article")
+
+    return render_template("resultats.html")
 
 @app.route("/api", methods=["POST"])
 def api():

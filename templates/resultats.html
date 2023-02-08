@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Résultats</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}">
+  </head>
+
+  <body>
+    <h1>Résultats</h1>
+    <ul>
+        {% with articles = get_flashed_messages(category_filter=["article"]) %}
+            {% for article in articles %}
+                <li>{{article}}</li>
+            {% endfor %}
+        {% endwith %}
+    </ul>
+    <p><a href="/application">Retour à l'application</a></p>
+  </body>
+</html>
